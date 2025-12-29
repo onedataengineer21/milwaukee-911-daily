@@ -301,10 +301,9 @@ function getLineChartOptions(timeSeriesData: TimeSeriesData[]): Highcharts.Optio
     },
     tooltip: {
       shared: true,
-      crosshairs: true,
       backgroundColor: '#002147',
       style: { color: '#ffffff' },
-    },
+    } as any,
     plotOptions: {
       areaspline: {
         fillColor: {
@@ -406,13 +405,12 @@ function getDonutChartOptions(callTypeData: CallTypeData[]): Highcharts.Options 
       {
         type: 'pie',
         name: 'Calls',
-        colorByPoint: true,
         data: topCallTypes.map((item, index) => ({
           name: item.type,
           y: item.count,
           color: colorPalette[index % colorPalette.length],
         })),
-      },
+      } as any,
     ],
     credits: { enabled: false },
   };
