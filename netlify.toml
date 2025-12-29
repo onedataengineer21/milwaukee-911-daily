@@ -1,0 +1,21 @@
+# Netlify configuration for Milwaukee 911 Daily Dashboard
+
+[build]
+  # Set the base directory to frontend
+  base = "frontend"
+
+  # Build command
+  command = "npm run build"
+
+  # Publish directory (relative to base)
+  publish = "dist"
+
+# Redirect all routes to index.html for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Optional: Environment variables (if needed)
+# [build.environment]
+#   NODE_VERSION = "18"

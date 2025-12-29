@@ -129,6 +129,43 @@ interface Call {
 }
 ```
 
+## Deployment
+
+### Deploy to Netlify (Frontend Only)
+
+The repository includes `netlify.toml` configuration for easy deployment:
+
+1. **Connect your GitHub repository to Netlify**
+   - The build settings are already configured in `netlify.toml`
+   - Base directory: `frontend`
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+
+2. **Manual deployment**
+   ```bash
+   cd frontend
+   npm run build
+   # Deploy the 'dist' folder to Netlify
+   ```
+
+3. **Important**: The frontend uses dummy data. For production, you'll need to:
+   - Deploy the backend to a service like Railway, Render, or Heroku
+   - Update the API endpoint in the frontend to point to your deployed backend
+   - Update CORS settings in the backend to allow your Netlify domain
+
+### Deploy Backend (Optional)
+
+For full functionality, deploy the backend separately:
+
+1. **Railway/Render/Heroku**
+   - Set base directory to `backend`
+   - Build command: `npm install`
+   - Start command: `npm start`
+   - Add environment variable: `PORT=3001`
+
+2. **Update frontend API endpoint**
+   - Change `http://localhost:3001` to your deployed backend URL in `SimpleDashboard.tsx`
+
 ## Development Notes
 
 - The application currently uses dummy data for testing
