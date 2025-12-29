@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { MilwaukeeMap } from './MilwaukeeMap';
 import { DataTable } from './DataTable';
+import { dummyData } from '../data/dummyData';
 
 interface DailyStats {
   totalCallsToday: number;
@@ -68,16 +68,21 @@ export function SimpleDashboard() {
   const [activeTab, setActiveTab] = useState<'dashboard' | 'data'>('dashboard');
 
   useEffect(() => {
-    // Fetch dummy data
-    axios.get('http://localhost:3001/api/calls/dummy')
-      .then(response => {
-        setData(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error loading data:', error);
-        setLoading(false);
-      });
+    // Load static dummy data (for production deployment)
+    // To use the backend API instead, uncomment the axios call below
+    setData(dummyData as DashboardData);
+    setLoading(false);
+
+    // Uncomment this to use the backend API (requires backend deployment):
+    // axios.get('http://localhost:3001/api/calls/dummy')
+    //   .then(response => {
+    //     setData(response.data);
+    //     setLoading(false);
+    //   })
+    //   .catch(error => {
+    //     console.error('Error loading data:', error);
+    //     setLoading(false);
+    //   });
   }, []);
 
   if (loading) {
